@@ -208,7 +208,14 @@ function csv(v) {
   return `"${s}"`;
 }
 function escapeHtml(s="") {
-  return s.replace(/[&<>"']/g, (c)=>({ "&":"&amp;","<":"&lt;",">":"&gt;",""":"&quot;","'":"&#39;" }[c]));
+  return s.replace(/[&<>"']/g, (c) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  "\"": "&quot;",
+  "'": "&#39;"
+}[c]));
+
 }
 function tryHost(u="") {
   try { return new URL(u).hostname; } catch { return ""; }
