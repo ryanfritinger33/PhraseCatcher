@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Spanish Collector</title>
+  <script defer src="https://unpkg.com/@supabase/supabase-js@2"></script>
+  <link rel="stylesheet" href="https://unpkg.com/@picocss/pico@2/css/pico.classless.min.css">
+  <style>
+    .row { display:grid; gap:.5rem; grid-template-columns: 1fr 1fr 1fr auto; align-items:start; padding:.5rem 0; border-bottom:1px solid #eee }
+    .row small { color:#777 }
+    .pill { padding:.15rem .5rem; border-radius:999px; background:#eef }
+    .muted { color:#666; font-size:.9rem }
+    .controls { display:flex; gap:.5rem; flex-wrap:wrap }
+    .nowrap { white-space:nowrap }
+    textarea { width:100% }
+    input[type="text"] { width:100% }
+    main.container { max-width: 1000px }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <h2>Spanish Collector</h2>
+
+    <section id="auth">
+      <form id="login-form">
+        <label>Email for magic link
+          <input type="email" id="email" placeholder="you@example.com" required>
+        </label>
+        <button type="submit">Send sign-in link</button>
+      </form>
+      <div class="controls">
+        <button id="logout" hidden>Sign out</button>
+        <button id="copyToken" hidden>Copy access token</button>
+      </div>
+      <p id="whoami" class="muted"></p>
+    </section>
+
+    <section id="controls" hidden>
+      <div class="controls">
+        <input id="q" placeholder="Search original/translation/tags…" />
+        <select id="verified">
+          <option value="">All</option>
+          <option value="true">Verified</option>
+          <option value="false">Unverified</option>
+        </select>
+        <select id="sort">
+          <option value="created_at.desc">Newest</option>
+          <option value="created_at.asc">Oldest</option>
+        </select>
+        <button id="exportCsv" class="secondary">Export CSV</button>
+      </div>
+    </section>
+
+    <section id="list" hidden>
+      <div id="rows"></div>
+      <nav class="controls">
+        <button id="prev">‹ Prev</button>
+        <span id="pageInfo" class="muted"></span>
+        <button id="next">Next ›</button>
+      </nav>
+    </section>
+  </main>
+
+  <script defer src="app.js"></script>
+</body>
+</html>
